@@ -18,26 +18,6 @@ jobs:
           git checkout -b release-${{ github.sha }}
           git push origin release-${{ github.sha }}
 
-      
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.BOT_TOKEN }}
-          commit-message: "chore(release): version bump [skip ci]"
-          title: "chore(release): version bump"
-          branch: release-${{ github.sha }}
-          base: main
-          signoff: true
-
-  release:
-    runs-on: ubuntu-latest
-    needs: create-release-branch
-    steps:
-      - name: Checkout
-        uses: danysk/action-checkout@0.2.22
-        with:
-          token: ${{ secrets.BOT_TOKEN }}
-
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v6
         with:
