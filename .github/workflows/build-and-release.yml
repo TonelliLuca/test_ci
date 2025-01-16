@@ -27,10 +27,6 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
 
-      - name: Set GPG Trust Level
-        run: |
-          echo -e "trust\n5\ny\n" | gpg --batch --yes --command-fd 0 --edit-key D9F1B048E19E87E73DAEB6F04744D90DAE4690FB trust quit
-
       - name: Create PR Branch
         run: |
           git checkout -b release-${{ github.sha }}
