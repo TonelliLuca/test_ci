@@ -1,7 +1,5 @@
 import config from 'semantic-release-preconfigured-conventional-commits' with { type: "json" }
 config.plugins.push(
-    "@semantic-release/github",
-    "@semantic-release/git",
     [
         "semantic-release-github-pullrequest",
         {
@@ -11,7 +9,9 @@ config.plugins.push(
         body: "This pull request includes the changes for version ${nextRelease.version}.",
         branch: "release-${nextRelease.version}"
         }
-    ]
+    ],
+    "@semantic-release/github",
+    "@semantic-release/git",
 )
 
 
