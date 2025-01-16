@@ -1,7 +1,5 @@
 var config = require('semantic-release-preconfigured-conventional-commits');
 
-config.branches = ["main", "release"];
-
 config.plugins.push(
   "@semantic-release/github",
   [
@@ -9,7 +7,6 @@ config.plugins.push(
     {
       "assets": ["CHANGELOG.md", "package.json"],
       "baseRef": "main",
-      "branch": "release-pr-${nextRelease.version}"
     }
   ],
   [
