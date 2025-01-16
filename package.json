@@ -11,5 +11,8 @@
   },
   "scripts": {
     "prepare": "husky"
+  },
+  "release": {
+    "branches": ["main"]
   }
 }
