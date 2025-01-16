@@ -1,25 +1,20 @@
 name: Release
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
 
-permissions:
-  contents: write
-  issues: write
-  pull-requests: write
-
 jobs:
   release:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout the repository
       - name: Checkout
         uses: danysk/action-checkout@0.2.22
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BOT_TOKEN }}
 
-      # 2. Import GPG key (if necessary)
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v6
         with:
@@ -29,39 +24,19 @@ jobs:
           git_user_signingkey: true
           git_commit_gpgsign: true
 
-      # 3. Set GPG Trust Level (if using GPG)
       - name: Set GPG Trust Level
         run: |
           echo -e "trust\n5\ny\n" | gpg --batch --yes --command-fd 0 --edit-key D9F1B048E19E87E73DAEB6F04744D90DAE4690FB trust quit
 
-      # 4. Create a new release branch
-      - name: Create PR Branch
-        run: |
-          git checkout -b release-${{ github.sha }}
-
-      # 5. Setup Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "22.13"
 
-      # 6. Install dependencies
       - name: Install dependencies
         run: HUSKY=0 npm clean-install
 
-      # 7. Run Semantic Release
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: npx semantic-release
-
-      # 8. Create Pull Request with release changes
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.BOT_TOKEN }}
-          commit-message: "chore(release): version bump [skip ci]"
-          title: "chore/release: version bump"
-          branch: release-${{ github.sha }}
-          base: main
-          signoff: true
