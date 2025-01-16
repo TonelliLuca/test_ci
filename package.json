@@ -1,22 +1,11 @@
 {
-  "name": "test_ci",
-  "version": "1.0.0",
-  "private": true,
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
     "@commitlint/config-conventional": "^19.6.0",
     "husky": "^9.1.7",
     "semantic-release-preconfigured-conventional-commits": "^1.1.119"
   },
-  "overrides": {
-    "conventional-changelog-conventionalcommits": ">= 8.0.0"
-  },
   "scripts": {
     "prepare": "husky"
-  },
-  "release": {
-    "branches": [
-      "main"
-    ]
   }
 }
