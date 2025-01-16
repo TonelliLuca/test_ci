@@ -3,14 +3,6 @@ var config = require('semantic-release-preconfigured-conventional-commits');
 config.plugins.push(
   "@semantic-release/github",
   [
-    "semantic-release-github-pullrequest",
-    {
-      "assets": ["CHANGELOG.md", "package.json"],
-      "baseRef": "main",
-      "branch": "release-${nextRelease.version}"
-    }
-  ],
-  [
     "@semantic-release/exec",
     {
       prepareCmd: 'echo "Preparing version ${nextRelease.version}"',
