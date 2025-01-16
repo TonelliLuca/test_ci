@@ -1,11 +1,13 @@
 name: Release
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
 
 jobs:
   create-release-branch:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,7 +23,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BOT_TOKEN }}
           commit-message: "chore(release): version bump [skip ci]"
           title: "chore(release): version bump"
           branch: release-${{ github.sha }}
@@ -34,9 +36,9 @@ jobs:
     needs: create-release-branch
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: danysk/action-checkout@0.2.22
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.BOT_TOKEN }}
 
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v6
