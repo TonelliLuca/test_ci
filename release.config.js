@@ -1,5 +1,5 @@
 var config = require('semantic-release-preconfigured-conventional-commits');
-config.branches = ["main", "release"];
+config.branches = ["release"];
 config.plugins.push(
     "@semantic-release/git",
     "@semantic-release/github",
