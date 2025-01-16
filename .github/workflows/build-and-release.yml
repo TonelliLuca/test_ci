@@ -10,18 +10,13 @@ permissions:
   pull-requests: write
 
 jobs:
-  create-release-branch:
+  release:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: danysk/action-checkout@0.2.22
         with:
           token: ${{ secrets.BOT_TOKEN }}
-
-      - name: Create Release Branch
-        run: |
-          git checkout -b release-${{ github.sha }}
-          git push origin release-${{ github.sha }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
