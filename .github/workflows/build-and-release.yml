@@ -9,10 +9,12 @@ permissions:
 
 jobs:
   release:
+    name: Release
     runs-on: ubuntu-latest
-    env:
-      ORG_GRADLE_PROJECT_signingKey: ${{ secrets.BOT_GPG_KEY }}
-      ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.BOT_GPG_PSW }}
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
