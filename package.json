@@ -19,8 +19,5 @@
     "branches": [
       "main"
     ]
-  },
-  "dependencies": {
-    "@semantic-release/git": "github:semantic-release/git"
   }
 }
