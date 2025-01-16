@@ -7,6 +7,7 @@ config.plugins.push(
     {
       "assets": ["CHANGELOG.md", "package.json"],
       "baseRef": "main",
+      "branch": "release-${nextRelease.version}"
     }
   ],
   [
