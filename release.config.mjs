@@ -11,13 +11,6 @@ config.plugins.push(
             branch: "release-${nextRelease.version}"
         }
     ],
-    [
-        "@semantic-release/git",
-        {
-            assets: ["package.json", "CHANGELOG.md"],
-            message: "chore(release): ${nextRelease.version} [skip ci]"
-        }
-    ],
     "@semantic-release/github"
 )
 
