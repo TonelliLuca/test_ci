@@ -8,7 +8,6 @@ config.plugins.push(
             baseRef: "main",
             title: "chore(release): ${nextRelease.version}",
             body: "This pull request includes the changes for version ${nextRelease.version}.",
-            branch: "release-${nextRelease.version}"
         }
     ],
     "@semantic-release/github"
