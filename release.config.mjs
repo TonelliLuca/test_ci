@@ -2,7 +2,7 @@ import config from 'semantic-release-preconfigured-conventional-commits' with { 
 
 config.plugins.push(
     {
-        "branches": ["main"]
+        branches: ["main"]
     },
     [
         "semantic-release-github-pullrequest",
