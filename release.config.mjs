@@ -1,12 +1,11 @@
 import config from 'semantic-release-preconfigured-conventional-commits' with { type: "json" }
 
 config.plugins.push(
-    {
-        branches: ["main"]
-    },
+
     [
         "semantic-release-github-pullrequest",
         {
+            branches: ["main"],
             assets: ["package.json", "CHANGELOG.md"],
             baseRef: "main",
             title: "chore(release): ${nextRelease.version}",
