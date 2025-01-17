@@ -5,7 +5,6 @@ config.plugins.push(
     [
         "semantic-release-github-pullrequest",
         {
-            branch: "main",
             assets: ["package.json", "CHANGELOG.md"],
             baseRef: "main",
             title: "chore(release): ${nextRelease.version}",
@@ -14,5 +13,6 @@ config.plugins.push(
     ],
     "@semantic-release/github"
 )
+config.branches = ["main"]
 
 export default config
