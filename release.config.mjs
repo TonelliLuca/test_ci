@@ -14,6 +14,5 @@ config.plugins.push(
         }
     ],
 )
-config.branches = ["main", "release/*"]
 
 export default config

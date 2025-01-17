@@ -12,5 +12,11 @@
   },
   "dependencies": {
     "@semantic-release/git": "^10.0.1"
+  },
+  "release": {
+    "branches": [
+      "main",
+      "release/*"
+    ]
   }
 }
